@@ -29,7 +29,7 @@ const Navbar = () => {
                             {menuItem}
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost normal-case text-2xl ">Doctor Portal</Link>
+                    <Link to='/' className="btn btn-ghost normal-case text-2xl">Doctor Portal</Link>
                 </div>
 
 
