@@ -16,7 +16,7 @@ const Navbar = () => {
 
     return (
 
-        <>
+        <div>
             {/* dropdown */}
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
@@ -28,20 +28,20 @@ const Navbar = () => {
                             {menuItem}
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost normal-case text-2xl">Doctor Portal</Link>
+                    <Link to='/' className="btn btn-ghost normal-case text-2xl xl:ml-28 md:mx-auto">Doctor Portal</Link>
                 </div>
 
 
                 {/* horizontal menu */}
                 <div className="navbar-end hidden lg:flex">
-                    <ul className="menu menu-horizontal p-3">
+                    <ul className="menu menu-horizontal p-3 mx-auto">
                         {menuItem}
                     </ul>
                 </div>
             </div>
 
 
-        </>
+        </div>
     );
 };
 
