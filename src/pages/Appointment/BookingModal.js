@@ -21,14 +21,14 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
             <input type="checkbox" id="booking-modal" className="modal-toggle" />
             <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <label htmlFor="booking-modal" class="btn btn-accent btn-circle absolute right-2 top-2 text-white">✕</label>
+                    <label htmlFor="booking-modal" className="btn btn-accent btn-circle absolute right-2 top-2 text-white">✕</label>
                     <h3 className="font-bold text-lg text-secondary ">{name}</h3>
 
                     <form className='grid grid-cols-1 gap-4 justify-items-center py-5 ' onSubmit={handleBooking} >
 
                         <input type="text" name='date' value={format(date, 'PP')} className="input input-bordered w-full max-w-xs" disabled />
 
-                        <select name='slot' class="select select-bordered w-full max-w-xs">
+                        <select name='slot' className="select select-bordered w-full max-w-xs">
 
                             {
                                 slots.map(slot => <option value={slot}>{slot}</option>)
