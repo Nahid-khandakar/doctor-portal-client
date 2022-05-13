@@ -1,14 +1,28 @@
 import React from 'react';
 
-const TestimonialCard = () => {
+const TestimonialCard = ({ review }) => {
     return (
-        <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card max-w-lg bg-base-100 shadow-xl">
             <div class="card-body">
-                <h2 class="card-title">Card title!</h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
-                <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Buy Now</button>
+
+                <p>{review.review}</p>
+
+                <div class="flex mt-2">
+
+                    <div class="avatar">
+                        <div class="w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                            <img src={review.img} alt='people' />
+                        </div>
+                    </div>
+
+                    <div className='ml-10'>
+                        <h1>{review.name}</h1>
+                        <p>{review.country}</p>
+                    </div>
+
+
                 </div>
+
             </div>
         </div>
     );

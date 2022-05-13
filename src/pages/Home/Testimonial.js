@@ -12,17 +12,23 @@ const Testimonial = () => {
         {
             _id: 1,
             review: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quibusdam asperiores iste sapiente laborum minus?',
-            img: people1
+            img: people1,
+            name: "Wilson Herry",
+            country: "USA"
         },
         {
             _id: 2,
             review: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quibusdam asperiores iste sapiente laborum minus?',
-            img: people2
+            img: people2,
+            name: "Wilson Herry",
+            country: "USA"
         },
         {
             _id: 3,
             review: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus quibusdam asperiores iste sapiente laborum minus?',
-            img: people3
+            img: people3,
+            name: "Wilson Herry",
+            country: "USA"
         }
     ]
 
@@ -41,7 +47,7 @@ const Testimonial = () => {
             </div>
 
 
-            <div>
+            <div className='grid grid-cols-1 xl:grid-cols-3 gap-4 px-12'>
                 {
                     reviews.map(review => <TestimonialCard
                         key={review._id}
