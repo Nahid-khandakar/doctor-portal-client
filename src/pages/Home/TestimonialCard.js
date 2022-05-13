@@ -2,15 +2,15 @@ import React from 'react';
 
 const TestimonialCard = ({ review }) => {
     return (
-        <div class="card max-w-lg bg-base-100 shadow-xl">
-            <div class="card-body">
+        <div className="card max-w-lg bg-base-100 shadow-xl">
+            <div className="card-body">
 
                 <p>{review.review}</p>
 
-                <div class="flex mt-2">
+                <div className="flex mt-2">
 
-                    <div class="avatar">
-                        <div class="w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                    <div className="avatar">
+                        <div className="w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                             <img src={review.img} alt='people' />
                         </div>
                     </div>
