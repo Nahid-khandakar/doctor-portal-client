@@ -8,13 +8,13 @@ import 'react-day-picker/dist/style.css';
 const AppointmentBanner = ({ date, setDate }) => {
 
     return (
-        <div className=''>
-            <div className="hero min-h-screen " style={{ backgroundImage: `url(${bg})` }}>
+
+        <div>
+            <div className="hero h-82" style={{ backgroundImage: `url(${bg})` }}>
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <img src={chair} className="xl:max-w-xl md:max-w-xs rounded-lg shadow-2xl" alt='' />
+                    <img src={chair} className="max-w-xs xl:max-w-md rounded-lg shadow-2xl" alt='' />
 
-
-                    <div className='p-10'>
+                    <div className=''>
                         <DayPicker
                             styles={{
                                 caption: { color: 'red' },
@@ -23,15 +23,12 @@ const AppointmentBanner = ({ date, setDate }) => {
                             selected={date}
                             onSelect={setDate}
                         />
-
                     </div>
-
-
-
 
                 </div>
             </div>
         </div>
+
     );
 };
 

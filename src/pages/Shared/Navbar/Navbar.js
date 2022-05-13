@@ -35,7 +35,7 @@ const Navbar = () => {
 
                 {/* horizontal menu */}
                 <div className="navbar-end hidden lg:flex">
-                    <ul className="menu menu-horizontal py-3">
+                    <ul className="menu menu-horizontal  py-2">
                         {menuItem}
                     </ul>
                 </div>
