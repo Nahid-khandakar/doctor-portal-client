@@ -1,21 +1,40 @@
 import React from 'react';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init'
 import { useForm } from "react-hook-form";
+import Loading from '../Shared/Loading/Loading';
 
 
 const Login = () => {
-
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    //google sign in
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    if (user) {
-        console.log(user)
+    //sign with email and pass
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+
+    if (gUser) {
+        console.log(gUser)
     }
-    if (error) {
-        console.error(error)
+
+    let signInError;
+
+    if (loading || gLoading) {
+        return <Loading></Loading>
     }
-    const onSubmit = data => console.log(data);
+
+    if (error || gError) {
+        signInError = <p>{error?.message || gError?.message}</p>
+    }
+
+    const onSubmit = data => {
+        createUserWithEmailAndPassword(data.email, data.password)
+    }
 
     return (
         <div className='flex justify-center items-center mt-10'>
@@ -26,15 +45,15 @@ const Login = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
 
                         {/* for email */}
-                        <div class="form-control w-full max-w-xs">
+                        <div className="form-control w-full max-w-xs">
 
-                            <label class="label">
-                                <span class="label-text">Email</span>
+                            <label className="label">
+                                <span className="label-text">Email</span>
                             </label>
 
                             <input type="email"
                                 placeholder="your email"
-                                class="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs"
                                 {...register("email", {
                                     required: {
                                         value: true,
@@ -48,10 +67,10 @@ const Login = () => {
                             />
 
 
-                            <label class="label">
+                            <label className="label">
 
-                                {errors.email?.type === 'required' && <span class="label-text-alt text-amber-600">{errors.email.message}</span>}
-                                {errors.email?.type === 'pattern' && <span class="label-text-alt text-amber-600">{errors.email.message}</span>}
+                                {errors.email?.type === 'required' && <span className="label-text-alt text-amber-600">{errors.email.message}</span>}
+                                {errors.email?.type === 'pattern' && <span className="label-text-alt text-amber-600">{errors.email.message}</span>}
 
                             </label>
                         </div>
@@ -59,15 +78,15 @@ const Login = () => {
 
 
                         {/* for password */}
-                        <div class="form-control w-full max-w-xs">
+                        <div className="form-control w-full max-w-xs">
 
-                            <label class="label">
-                                <span class="label-text">Password</span>
+                            <label className="label">
+                                <span className="label-text">Password</span>
                             </label>
 
                             <input type="password"
                                 placeholder="password"
-                                class="input input-bordered w-full max-w-xs"
+                                className="input input-bordered w-full max-w-xs"
                                 {...register("password", {
                                     required: {
                                         value: true,
@@ -81,14 +100,15 @@ const Login = () => {
                             />
 
 
-                            <label class="label">
+                            <label className="label">
 
-                                {errors.password?.type === 'required' && <span class="label-text-alt text-amber-600">{errors.password.message}</span>}
-                                {errors.password?.type === 'minLength' && <span class="label-text-alt text-amber-600">{errors.password.message}</span>}
+                                {errors.password?.type === 'required' && <span className="label-text-alt text-amber-600">{errors.password.message}</span>}
+                                {errors.password?.type === 'minLength' && <span className="label-text-alt text-amber-600">{errors.password.message}</span>}
 
                             </label>
                         </div>
 
+                        {signInError}
                         <input type="submit" className='btn text-white w-full' value='login' />
                     </form>
 
