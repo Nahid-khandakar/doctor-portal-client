@@ -24,6 +24,10 @@ const Navbar = () => {
         <li><Link to='/reviews'>Reviews</Link></li>
         <li><Link to='/about'>About</Link></li>
 
+        {
+            user && <li><Link to='/dashboard'>Dashboard</Link></li>
+        }
+
         <li>{user ? <button onClick={logout} className="">Sign Out</button> : <Link to='/login'>Login</Link>}</li>
 
     </>
@@ -45,6 +49,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <Link to='/' className="btn btn-ghost normal-case text-2xl">Doctor Portal</Link>
+
                 </div>
 
 
@@ -54,6 +59,8 @@ const Navbar = () => {
                         {menuItem}
                     </ul>
                 </div>
+
+
             </div>
 
 
