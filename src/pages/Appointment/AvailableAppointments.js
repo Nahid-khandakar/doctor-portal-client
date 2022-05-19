@@ -10,7 +10,7 @@ const AvailableAppointments = ({ date }) => {
     const [treatment, setTreatment] = useState(null)
 
     const formattedDate = format(date, 'PP')
-    console.log(formattedDate)
+    //console.log(formattedDate)
 
 
     //replace of useEffect -- use react query
