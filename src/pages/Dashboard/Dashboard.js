@@ -20,6 +20,7 @@ const Dashboard = () => {
                         {/* Sidebar content*/}
                         <li><Link to='/dashboard'>Dashboard</Link></li>
                         <li><Link to='/dashboard/review'>Review</Link></li>
+                        <li><Link to='/dashboard/users'>All users</Link></li>
                     </ul>
 
                 </div>

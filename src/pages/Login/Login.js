@@ -13,7 +13,7 @@ const Login = () => {
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
-    const token = useToken(user || gUser)
+
 
     //google sign in
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -26,6 +26,9 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+
+
+    const [token] = useToken(user || gUser)
 
     //if find user
     useEffect(() => {

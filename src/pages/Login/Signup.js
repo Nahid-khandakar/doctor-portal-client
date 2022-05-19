@@ -30,7 +30,7 @@ const Signup = () => {
     const [token] = useToken(user || gUser)
 
     if (token) {
-        console.log(token)
+        //console.log(token)
         navigate('/appointment')
     }
 
