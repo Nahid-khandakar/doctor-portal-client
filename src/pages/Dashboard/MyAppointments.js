@@ -71,7 +71,11 @@ const MyAppointments = () => {
                                         {
                                             (a.price && a.paid) &&
 
-                                            <p class="text-success ">paid</p>
+                                            <div>
+                                                <p class="text-success ">paid</p>
+                                                <p>{a.transactionId}</p>
+
+                                            </div>
 
                                         }
                                     </td>

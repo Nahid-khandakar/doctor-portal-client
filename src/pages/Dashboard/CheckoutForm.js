@@ -8,15 +8,15 @@ const CheckoutForm = ({ appointment }) => {
     const elements = useElements();
     const [cardError, setCardError] = useState('')
     const [cardSuccess, setCardSuccess] = useState('')
-
-
-
+    const [processing, setProcessing] = useState(false)
+    const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState('');
 
-    const { price, patientEmail, patientName
-
-    } = appointment
+    const { _id, price, patientEmail, patientName } = appointment
     console.log(price)
+
+
+
 
 
     useEffect(() => {
@@ -69,7 +69,7 @@ const CheckoutForm = ({ appointment }) => {
         setCardError(error?.message || '')
 
         setCardSuccess(' ')
-
+        setProcessing(true)
 
         //confirm card payment
 
@@ -88,10 +88,37 @@ const CheckoutForm = ({ appointment }) => {
 
         if (intentError) {
             setCardError(intentError?.message)
+            setProcessing(false)
         } else {
             setCardError(' ')
             setCardSuccess('Your payment is accepted')
+            setTransactionId(paymentIntent.id)
             console.log(paymentIntent)
+
+            //when get payment data & payment id 
+            //then send it server update booking information and post data both
+
+            const payment = {
+                appointment: _id,
+                name: patientName,
+                email: patientEmail,
+                transactionId: paymentIntent.id,
+            }
+            fetch(`http://localhost:5000/booking/${_id}`, {
+
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(payment)
+
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    setProcessing(false)
+                })
         }
     }
 
@@ -118,7 +145,7 @@ const CheckoutForm = ({ appointment }) => {
                         },
                     }}
                 />
-                <button type="submit" disabled={!stripe || !clientSecret} className='btn btn-sm my-5'>
+                <button type="submit" disabled={!stripe || !clientSecret || cardSuccess} className='btn btn-sm my-5'>
                     Pay
                 </button>
             </form>
@@ -127,7 +154,10 @@ const CheckoutForm = ({ appointment }) => {
                 cardError && <p className='text-red-500'>{cardError}</p>
             }
             {
-                cardSuccess && <p className='text-green-500'>{cardSuccess}</p>
+                cardSuccess && <div>
+                    <p className='text-green-500'>{cardSuccess}</p>
+                    <p className='text-orange-500'>{transactionId}</p>
+                </div>
             }
         </>
     );
